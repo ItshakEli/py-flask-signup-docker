@@ -16,6 +16,7 @@ node{
             //sh ("docker build -t ${imageTag} --pull=true .")
             echo 'Build docker image'
             def newApp = docker.build "${imageTag}"
+            newApp.push 'latest'
             //sh("sudo docker build -t ${imageTag} .")
         }
         stage ('Test image'){
