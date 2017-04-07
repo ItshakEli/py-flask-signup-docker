@@ -44,8 +44,8 @@ node{
             sh 'aws ecs register-task-definition --family flask-signup --cli-input-json file://flask-signup-v_${BUILD_NUMBER}.json'
 
             // Update the service with the new task definition and desired count
-            def TASK_REVISION= sh `aws ecs describe-task-definition --task-definition flask-signup | egrep "revision" | tr "/" " " | awk '{print $2}' | sed 's/"$//'`
-            def DESIRED_COUNT= sh `aws ecs describe-services --services ${SERVICE_NAME} | egrep "desiredCount" |tail -1| tr "/" " " | awk '{print $2}' | sed 's/,$//'`
+            def TASK_REVISION= sh 'aws ecs describe-task-definition --task-definition flask-signup | egrep "revision" | tr "/" " " | awk '{print $2}' | sed 's/"$//''
+            def DESIRED_COUNT= sh 'aws ecs describe-services --services ${SERVICE_NAME} | egrep "desiredCount" |tail -1| tr "/" " " | awk '{print $2}' | sed 's/,$//''
             
             if DESIRED_COUNT = "0" 
                 DESIRED_COUNT= "1"
