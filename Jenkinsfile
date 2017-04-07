@@ -15,7 +15,7 @@ node{
             //sh './dockerBuild.sh'
             //sh ("docker build -t ${imageTag} --pull=true .")
             echo 'Build docker image'
-            def newApp = docker.build ${imageTag}
+            def newApp = docker.build "${imageTag}"
             //sh("sudo docker build -t ${imageTag} .")
         }
         stage ('Test image'){
