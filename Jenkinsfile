@@ -6,37 +6,32 @@ node{
 
     try {
 
-       stage 'Checkout'
+        stage ('Checkout'){
+           checkout scm
+        }
 
-            checkout scm
-
-       stage 'Test'
-
-           
-       stage 'Docker Build'
+        stage ('Docker Build'){
 
             //sh './dockerBuild.sh'
             //sh ("docker build -t ${imageTag} --pull=true .")
             echo 'Build docker image'
             def newApp = docker.build ${imageTag}
             //sh("sudo docker build -t ${imageTag} .")
-
-       stage 'Test image'
+        }
+        stage ('Test image'){
         // run some tests on it (see below), then if everything looks good:
-        
-        stage 'Deploy'
+        }
+        stage ('Deploy'){
 
             echo 'Push to Repo'
             newApp.push 'latest'
             //sh './dockerPushToRepo.sh'
-
-            
-       stage 'Cleanup'
-
-            
         }
-
-
+            
+        stage ('Cleanup'){
+        }
+            
+    }
     catch (err) {
 
         currentBuild.result = "FAILURE"
