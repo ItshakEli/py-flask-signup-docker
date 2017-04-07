@@ -1,6 +1,7 @@
 node{
-
-
+    def project = 'itshakeli'
+    def appName = 'flask-signup'
+    def imageTag = "${project}/${appName}:v_${env.BUILD_NUMBER}"
     currentBuild.result = "SUCCESS"
 
     try {
@@ -12,13 +13,21 @@ node{
        stage 'Test'
 
            
-       stage 'Build Docker'
+       stage 'Docker Build'
 
             //sh './dockerBuild.sh'
+            //sh ("docker build -t ${imageTag} --pull=true .")
+            echo 'Build docker image'
+            def newApp = docker.build ${imageTag}
+            //sh("sudo docker build -t ${imageTag} .")
 
-       stage 'Deploy'
+       stage 'Test image'
+        // run some tests on it (see below), then if everything looks good:
+        
+        stage 'Deploy'
 
             echo 'Push to Repo'
+            newApp.push 'latest'
             //sh './dockerPushToRepo.sh'
 
             
