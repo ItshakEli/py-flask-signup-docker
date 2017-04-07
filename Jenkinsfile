@@ -31,7 +31,7 @@ node{
         }
             
         stage ('Cleanup'){
-            docker.Container.stop
+            newApp.Container.stop
         }
             
     }
