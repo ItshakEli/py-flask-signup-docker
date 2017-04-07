@@ -2,6 +2,7 @@ node{
     def project = 'itshakeli' 
     def appName = 'flask-signup'
     def imageTag = "${project}/${appName}:v_${env.BUILD_NUMBER}"
+    def newApp
     currentBuild.result = "SUCCESS"
 
     try {
@@ -15,8 +16,8 @@ node{
             //sh './dockerBuild.sh'
             //sh ("docker build -t ${imageTag} --pull=true .")
             echo 'Build docker image'
-            def newApp = docker.build "${imageTag}"
-            newApp.push 'latest'
+            newApp = docker.build "${imageTag}"
+            
             //sh("sudo docker build -t ${imageTag} .")
         }
         stage ('Test image'){
