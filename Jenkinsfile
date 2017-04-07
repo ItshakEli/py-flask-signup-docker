@@ -27,7 +27,7 @@ node{
         stage ('Push to Repo'){
 
             echo 'Push to Repo'
-            image.tag("latest", false)
+            newApp.tag("latest", false)
             newApp.push 'v_${env.BUILD_NUMBER}'
             //sh './dockerPushToRepo.sh'
         }
