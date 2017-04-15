@@ -32,10 +32,11 @@ node("aws-slave"){
             newApp.push 'latest'
             //sh './dockerPushToRepo.sh'
         }
-        stage('Deploy'){
+        //stage('Deploy'){
            
-           sh './deployECS.sh'
-        }
+        //   sh chmod u+x ./deployECS.sh
+       //    sh './deployECS.sh'
+        //}
         
         stage ('Cleanup'){
             
@@ -48,6 +49,12 @@ node("aws-slave"){
         
         throw err
     }
-
 }
-  
+
+node("master"){
+     stage('Deploy'){
+           
+           sh chmod u+x ./deployECS.sh
+           sh './deployECS.sh'
+        }
+}
