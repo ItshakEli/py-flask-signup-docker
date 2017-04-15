@@ -54,7 +54,7 @@ node("aws-slave"){
 node("master"){
      stage('Deploy'){
            
-           sh chmod u+x ./deployECS.sh
+           //sh 'chmod u+x ./deployECS.sh'
            sh './deployECS.sh'
         }
 }
