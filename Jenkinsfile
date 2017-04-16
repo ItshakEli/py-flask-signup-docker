@@ -1,4 +1,4 @@
-node("aws-slave"){
+node("ec2-fleet"){
     def project = 'itshakeli' 
     def appName = 'flask-signup'
     def imageTag = "${project}/${appName}:v_${env.BUILD_NUMBER}"
