@@ -62,12 +62,14 @@ node("master"){
      stage('JIRA'){
 	//def jiraJql = 'sprint in openSprints ()'
 	def jiraIssues = [];
+	      
         jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
 	     //jiraIssues = jiraIssueSelector(issueSelector: [$class: 'JqlIssueSelector', jql: jiraJql])
-        jiraComment(issueKey: "DEMO-1", body: "stam text"  )
-       // for (jiraIssue in jiraIssues) {
-	//    echo "Jira Issue: " + jiraIssue
-	    //jiraComment(issueKey: jiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
+        
+        for (jiraIssue in jiraIssues) {
+		String strJiraIssue = jiraIssue
+		echo "Jira Issue: " + strJiraIssue
+	        jiraComment(issueKey: strJiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
 	//	jiraComment(issueKey: "DEMO-1", body: "issue text"  )
 	//}
 	
