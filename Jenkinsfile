@@ -60,12 +60,15 @@ node("master"){
            //sh './deployECS.sh'
      }
      stage('JIRA'){
+	//def jiraJql = 'sprint in openSprints ()'
 	def jiraIssues = [];
         jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
+	     //jiraIssues = jiraIssueSelector(issueSelector: [$class: 'JqlIssueSelector', jql: jiraJql])
       
         for (jiraIssue in jiraIssues) {
 	    echo "Jira Issue: " + jiraIssue
-	    jiraComment(issueKey: jiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
+	    //jiraComment(issueKey: jiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
+		jiraComment(issueKey: jiraIssue, body: "issue text"  )
 	}
 	
      }
