@@ -34,8 +34,8 @@ node("ec2-fleet"){
         }
         stage('Deploy'){
            
-           sh chmod u+x ./deployECS.sh
-       //    sh './deployECS.sh'
+           //sh 'chmod u+x ./deployECS.sh'
+           sh './deployECS.sh'
         }
         stage('JIRA'){
             jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
