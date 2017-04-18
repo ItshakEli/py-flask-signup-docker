@@ -61,11 +61,12 @@ node("master"){
      }
      stage('JIRA'){
         jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
-      //jiraComment(issueKey: JIRA_ISSUE, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
+      
         for (jiraIssue in jiraIssues) {
 	    echo "Jira Issue: " + jiraIssue
+	    jiraComment(issueKey: jiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
 	}
-	jiraComment(issueKey: jiraIssues, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
+	
      }
 	
  
