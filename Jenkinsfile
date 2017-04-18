@@ -60,6 +60,7 @@ node("master"){
            //sh './deployECS.sh'
      }
      stage('JIRA'){
+	def jiraIssues = [];
         jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
       
         for (jiraIssue in jiraIssues) {
