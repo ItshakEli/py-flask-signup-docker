@@ -32,11 +32,20 @@ node("ec2-fleet"){
             newApp.push 'latest'
             //sh './dockerPushToRepo.sh'
         }
-        //stage('Deploy'){
+        stage('Deploy'){
            
-        //   sh chmod u+x ./deployECS.sh
+           sh chmod u+x ./deployECS.sh
        //    sh './deployECS.sh'
-        //}
+        }
+        stage('JIRA'){
+            jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
+      //jiraComment(issueKey: JIRA_ISSUE, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
+            for (jiraIssue in jiraIssues) {
+			    echo "Jira Issue: " + jiraIssue
+		}
+        }
+        
+            
         
         stage ('Cleanup'){
             
