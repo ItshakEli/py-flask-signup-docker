@@ -68,7 +68,7 @@ node("master"){
         for (jiraIssue in jiraIssues) {
 	    echo "Jira Issue: " + jiraIssue
 	    //jiraComment(issueKey: jiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
-		jiraComment(issueKey: jiraIssue, body: "issue text"  )
+		//jiraComment(issueKey: jiraIssue, body: "issue text"  )
 	}
 	
      }
