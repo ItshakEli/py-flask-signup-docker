@@ -2,7 +2,7 @@ node("ec2-fleet"){
     def project = 'itshakeli' 
     def appName = 'flask-signup'
     def imageTag = "${project}/${appName}:v_${env.BUILD_NUMBER}"
-    def newApp
+    def image
     
     currentBuild.result = "SUCCESS"
 
@@ -17,7 +17,7 @@ node("ec2-fleet"){
             //sh './dockerBuild.sh'
             //sh ("docker build -t ${imageTag} --pull=true .")
             echo 'Build docker image'
-            newApp = docker.build "${imageTag}"
+            image = docker.build "${imageTag}"
             
             //sh("sudo docker build -t ${imageTag} .")
         }
@@ -28,8 +28,8 @@ node("ec2-fleet"){
 
             echo 'Push to Repo'
             //newApp.tag("latest", false)
-            newApp.push "v_${env.BUILD_NUMBER}"
-            newApp.push 'latest'
+            image.push "v_${env.BUILD_NUMBER}"
+            image.push 'latest'
             //sh './dockerPushToRepo.sh'
         } 
         //stage('Deploy'){
@@ -57,7 +57,7 @@ node("master"){
      stage('Deploy'){
            
            //sh 'chmod u+x ./deployECS.sh'
-           //sh './deployECS.sh'
+           sh './deployECS.sh'
      }
      stage('JIRA'){
 	//def jiraJql = 'sprint in openSprints ()'
