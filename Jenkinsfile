@@ -72,8 +72,7 @@ node("master"){
 	        jiraComment(issueKey: strJiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
 	//	jiraComment(issueKey: "DEMO-1", body: "issue text"  )
 	//}
-	
-     }
-	
+	}
+     }	
   
 }
