@@ -31,7 +31,7 @@ node("ec2-fleet"){
             newApp.push "v_${env.BUILD_NUMBER}"
             newApp.push 'latest'
             //sh './dockerPushToRepo.sh'
-        }
+        } 
         //stage('Deploy'){
            
            //sh 'chmod u+x ./deployECS.sh'
