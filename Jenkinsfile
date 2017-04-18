@@ -64,12 +64,12 @@ node("master"){
 	def jiraIssues = [];
         jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
 	     //jiraIssues = jiraIssueSelector(issueSelector: [$class: 'JqlIssueSelector', jql: jiraJql])
-      
-        for (jiraIssue in jiraIssues) {
-	    echo "Jira Issue: " + jiraIssue
+      jiraComment(issueKey: "DEMO-1", body: "issue text"  )
+       // for (jiraIssue in jiraIssues) {
+	//    echo "Jira Issue: " + jiraIssue
 	    //jiraComment(issueKey: jiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
-		jiraComment(issueKey: "DEMO-1", body: "issue text"  )
-	}
+	//	jiraComment(issueKey: "DEMO-1", body: "issue text"  )
+	//}
 	
      }
 	
