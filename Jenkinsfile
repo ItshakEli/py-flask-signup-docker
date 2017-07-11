@@ -56,7 +56,7 @@ node("ec2-fleet"){
 node("master"){
      stage('Deploy'){
            checkout scm
-           //sh 'chmod u+x ./deployECS.sh'
+           sh 'chmod u+x ./deployECS.sh'
            sh './deployECS.sh'
      }
      stage('JIRA'){
