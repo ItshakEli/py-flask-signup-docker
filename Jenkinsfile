@@ -1,4 +1,5 @@
-node("ec2-fleet"){ 
+//node("ec2-fleet"){ 
+node("master"){ 
     def project = 'itshakeli' 
     def appName = 'flask-signup'
     def imageTag = "${project}/${appName}:v_${env.BUILD_NUMBER}"
