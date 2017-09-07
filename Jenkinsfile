@@ -64,6 +64,7 @@ def notifyFailed() {
 }
 
 node("master"){
+try{
      stage('Deploy'){
            checkout scm
            sh 'chmod u+x ./deployECS.sh'
@@ -83,4 +84,9 @@ node("master"){
 	        jiraComment(issueKey: jiraIssue, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) built. Please go to ${env.BUILD_URL}."  )
 	}//for
      }//stage
+} catch (err) {
+        currentBuild.result = "FAILURE"
+        notifyFailed()
+        throw err
+  }
 }//node 
