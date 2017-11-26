@@ -1,5 +1,6 @@
 #!/bin/bash
-SERVICE_NAME="flask-signup-service"
+#SERVICE_NAME="flask-signup-service"
+SERVICE_NAME="MyService"
 IMAGE_VERSION="v_"${BUILD_NUMBER}
 TASK_FAMILY="flask-signup"
 TASK_DEFINITION_FILE=flask-signup-v_${BUILD_NUMBER}.json
